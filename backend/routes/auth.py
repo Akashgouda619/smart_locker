@@ -67,6 +67,33 @@ def login():
         )
 
     user = UserModel.get_by_email(email)
+    if not user:
+        # Auto-sync/restore user from Firebase Auth if they exist there
+        try:
+            import firebase_admin.auth
+            from services.firebase_service import initialized
+            if initialized:
+                fb_user = firebase_admin.auth.get_user_by_email(email)
+                if fb_user:
+                    password_hash = generate_password_hash(password)
+                    full_name = fb_user.display_name or fb_user.email.split('@')[0]
+                    phone = fb_user.phone_number or "0000000000"
+                    if phone.startswith('+91'):
+                        phone = phone[3:]
+                    elif phone.startswith('+'):
+                        phone = phone[1:]
+                    
+                    import random
+                    temp_phone = phone
+                    for _ in range(5):
+                        created = UserModel.create(full_name, temp_phone, email, password_hash)
+                        if created:
+                            break
+                        temp_phone = f"{phone[:6]}{random.randint(1000, 9999)}"
+                    user = UserModel.get_by_email(email)
+        except Exception as fe:
+            print(f"Auto-sync from Firebase failed for {email}: {fe}")
+
     if not user or not check_password_hash(user["password_hash"], password):
         return json_response(
             success=False,
