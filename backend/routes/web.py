@@ -1255,9 +1255,19 @@ def web_my_bookings():
 @requires_auth
 def web_admin_reset_locker(locker_id):
     """Resets locker for admin screen."""
+    # Find any active bookings for this locker to complete them correctly (syncs to Firestore & MQTT)
     conn = get_db_connection()
-    conn.execute("UPDATE lockers SET status = 'available' WHERE locker_id = ?", (locker_id,))
-    conn.execute("UPDATE bookings SET booking_status = 'completed' WHERE locker_id = ? AND booking_status != 'completed'", (locker_id,))
-    conn.commit()
+    active_bookings = conn.execute(
+        "SELECT booking_id FROM bookings WHERE locker_id = ? AND booking_status != 'completed'", 
+        (locker_id,)
+    ).fetchall()
     conn.close()
+
+    # Complete each active booking through BookingModel (updates SQLite, Firestore, and publishes MQTT reset)
+    for b in active_bookings:
+        BookingModel.update_status(b["booking_id"], "completed")
+    
+    # Also ensure the locker is marked available in SQLite and Firestore
+    LockerModel.update_status(locker_id, "available")
+    
     return jsonify({"success": True})
