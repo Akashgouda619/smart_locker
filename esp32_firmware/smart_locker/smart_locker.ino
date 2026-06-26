@@ -20,7 +20,9 @@ const char* WIFI_SSID     = "Akashgouda";
 const char* WIFI_PASSWORD = "12345678";
 
 // ─── Backend Server ──────────────────────────────────────────
-const char* SERVER_URL    = "https://smart-locker-stm1.onrender.com";
+const char* SERVER_URL    = "https://eradicate-superglue-axis.ngrok-free.dev";
+
+
 
 // ─── MQTT Broker ─────────────────────────────────────────────
 const char* MQTT_SERVER   = "broker.emqx.io"; // Public cloud MQTT broker
