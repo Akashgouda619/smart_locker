@@ -291,6 +291,7 @@ void fetchPaymentQRAndShow() {
   }
   
   int code = http.GET();
+  Serial.printf("[HTTP GET] URL: %s | Result Code: %d\n", url.c_str(), code);
 
   if (code == 200) {
     DynamicJsonDocument doc(8192);
