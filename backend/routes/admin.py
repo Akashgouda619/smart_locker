@@ -17,6 +17,14 @@ def debug_mqtt():
         "broker": "broker.emqx.io"
     }
 
+@admin_bp.route("/api/debug/mqtt-publish", methods=["GET"])
+def debug_mqtt_publish():
+    res = mqtt_service.publish_command("LOCKER_001", "reset", {"state": "available"})
+    return {
+        "success": res,
+        "message": "MQTT publish command triggered"
+    }
+
 @admin_bp.route("/api/admin/dashboard", methods=["GET"])
 def get_dashboard_metrics():
     """Retrieve key operational metrics for the Admin Dashboard."""
