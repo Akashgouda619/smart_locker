@@ -6,6 +6,7 @@
  */
 
 #include <WiFi.h>
+#include <WiFiClientSecure.h>
 #include <HTTPClient.h>
 #include <ArduinoJson.h>
 #include <TFT_eSPI.h>
@@ -19,7 +20,7 @@ const char* WIFI_SSID     = "Akashgouda";
 const char* WIFI_PASSWORD = "12345678";
 
 // ─── Backend Server ──────────────────────────────────────────
-const char* SERVER_URL    = "http://10.96.85.155:5000";
+const char* SERVER_URL    = "https://smart-locker-stm1.onrender.com";
 
 // ─── MQTT Broker ─────────────────────────────────────────────
 const char* MQTT_SERVER   = "broker.hivemq.com"; // Public cloud MQTT broker
@@ -278,7 +279,16 @@ void fetchPaymentQRAndShow() {
 
   HTTPClient http;
   String url = String(SERVER_URL) + "/api/esp32/payment/" + LOCKER_ID;
-  http.begin(url);
+  
+  WiFiClientSecure *clientSecure = nullptr;
+  if (url.startsWith("https")) {
+    clientSecure = new WiFiClientSecure;
+    clientSecure->setInsecure(); // Ignore certificate validation for the mock environment
+    http.begin(*clientSecure, url);
+  } else {
+    http.begin(url);
+  }
+  
   int code = http.GET();
 
   if (code == 200) {
@@ -298,6 +308,9 @@ void fetchPaymentQRAndShow() {
     }
   }
   http.end();
+  if (clientSecure) {
+    delete clientSecure;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────
