@@ -6,17 +6,7 @@ from config import Config
 from models.user import UserModel
 from utils.helpers import json_response
 
-from database.db import get_db_connection
-
 auth_bp = Blueprint("auth", __name__)
-
-@auth_bp.route("/api/auth/temp-delete-user", methods=["GET"])
-def temp_delete_user():
-    conn = get_db_connection()
-    conn.execute("DELETE FROM users WHERE email IN (?, ?)", ("akashgoudagkopparad.cs24@rvce.edu.in", "akashgoudagkopparad@gmail.com"))
-    conn.commit()
-    conn.close()
-    return "Both user accounts deleted from SQLite database. You can now log in to auto-sync with your entered password."
 
 @auth_bp.route("/api/auth/register", methods=["POST"])
 def register():
