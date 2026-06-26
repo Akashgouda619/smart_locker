@@ -101,7 +101,7 @@ export default function TimerScreen({ route, navigation }) {
   if (!booking) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#ffffff" />
+        <ActivityIndicator size="large" color="#10b981" />
       </View>
     );
   }
@@ -135,7 +135,7 @@ export default function TimerScreen({ route, navigation }) {
           disabled={loading}
         >
           {loading ? (
-            <ActivityIndicator color="#000000" />
+            <ActivityIndicator color="#040807" />
           ) : (
             <Text style={styles.retrieveButtonText}>Retrieve Items 🔓</Text>
           )}
@@ -148,32 +148,32 @@ export default function TimerScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#040807',
     justifyContent: 'center',
     padding: 16,
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#040807',
     justifyContent: 'center',
     alignItems: 'center',
   },
   card: {
-    backgroundColor: '#0c0c0e',
+    backgroundColor: '#0a1412',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#ffffff',
+    borderColor: '#132c25',
     padding: 24,
     alignItems: 'center',
   },
   stateTitle: {
-    color: '#22c55e',
+    color: '#10b981',
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 8,
   },
   lockerText: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 16,
     marginBottom: 24,
   },
@@ -182,20 +182,20 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
     borderWidth: 3,
-    borderColor: '#22c55e',
+    borderColor: '#10b981',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 32,
   },
   timerLabel: {
-    color: '#a3a3a3',
+    color: '#6ee7b7',
     fontSize: 12,
     fontWeight: '600',
     textTransform: 'uppercase',
     marginBottom: 8,
   },
   timerText: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 32,
     fontWeight: 'bold',
   },
@@ -205,20 +205,20 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: '#262626',
+    borderBottomColor: '#132c25',
     paddingBottom: 8,
   },
   infoLabel: {
-    color: '#a3a3a3',
+    color: '#6ee7b7',
     fontSize: 15,
   },
   infoValue: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 15,
     fontWeight: '600',
   },
   retrieveButton: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#10b981',
     height: 52,
     width: '100%',
     borderRadius: 4,
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   retrieveButtonText: {
-    color: '#000000',
+    color: '#040807',
     fontSize: 16,
     fontWeight: 'bold',
   }

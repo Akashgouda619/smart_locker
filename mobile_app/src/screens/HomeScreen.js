@@ -6,7 +6,8 @@ import {
   TouchableOpacity, 
   ActivityIndicator, 
   Alert,
-  FlatList 
+  FlatList,
+  Linking
 } from 'react-native';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -230,6 +231,13 @@ export default function HomeScreen({ navigation }) {
         </View>
       )}
 
+      <View style={styles.supportContainer}>
+        <Text style={styles.supportLabel}>Help & Support:</Text>
+        <TouchableOpacity style={styles.supportBtn} onPress={() => Linking.openURL('tel:7019007474')}>
+          <Text style={styles.supportValue}>📞 7019007474</Text>
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
         <Text style={styles.logoutText}>Log Out</Text>
       </TouchableOpacity>
@@ -240,33 +248,33 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#040807',
     padding: 16,
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#040807',
     justifyContent: 'center',
     alignItems: 'center',
   },
   loadingText: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     marginTop: 12,
     fontSize: 16,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#10b981',
     marginBottom: 16,
   },
   gridList: {
     marginBottom: 20,
   },
   gridCard: {
-    backgroundColor: '#0c0c0e',
+    backgroundColor: '#0a1412',
     borderWidth: 1,
-    borderColor: '#3f3f46',
+    borderColor: '#132c25',
     borderRadius: 6,
     padding: 16,
     marginBottom: 12,
@@ -275,33 +283,33 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardSelected: {
-    backgroundColor: '#ffffff',
-    borderColor: '#ffffff',
+    backgroundColor: '#10b981',
+    borderColor: '#10b981',
   },
   cardDisabled: {
-    borderColor: '#18181b',
-    opacity: 0.4,
+    borderColor: '#0b1614',
+    opacity: 0.3,
   },
   cardText: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 16,
     fontWeight: 'bold',
   },
   cardTextSelected: {
-    color: '#000000',
+    color: '#040807',
   },
   cardSubText: {
     fontSize: 12,
     fontWeight: '600',
-    color: '#a3a3a3',
+    color: '#6ee7b7',
   },
   durationSection: {
     borderTopWidth: 1,
-    borderTopColor: '#262626',
+    borderTopColor: '#132c25',
     paddingVertical: 20,
   },
   sectionTitle: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 12,
@@ -313,9 +321,9 @@ const styles = StyleSheet.create({
   },
   durationBtn: {
     flex: 1,
-    backgroundColor: '#0c0c0e',
+    backgroundColor: '#0a1412',
     borderWidth: 1,
-    borderColor: '#3f3f46',
+    borderColor: '#132c25',
     borderRadius: 4,
     height: 40,
     justifyContent: 'center',
@@ -323,15 +331,15 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   durationBtnSelected: {
-    backgroundColor: '#ffffff',
-    borderColor: '#ffffff',
+    backgroundColor: '#10b981',
+    borderColor: '#10b981',
   },
   durationText: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontWeight: '600',
   },
   durationTextSelected: {
-    color: '#000000',
+    color: '#040807',
   },
   pricingRow: {
     flexDirection: 'row',
@@ -340,16 +348,16 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   priceLabel: {
-    color: '#a3a3a3',
+    color: '#6ee7b7',
     fontSize: 16,
   },
   priceValue: {
-    color: '#22c55e',
+    color: '#10b981',
     fontSize: 22,
     fontWeight: 'bold',
   },
   rentButton: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#10b981',
     height: 52,
     borderRadius: 4,
     justifyContent: 'center',
@@ -357,7 +365,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   rentButtonText: {
-    color: '#000000',
+    color: '#040807',
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -365,9 +373,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#0c0c0e',
+    backgroundColor: '#0a1412',
     borderWidth: 1,
-    borderColor: '#ffffff',
+    borderColor: '#132c25',
     borderRadius: 8,
     padding: 24,
     marginVertical: 40,
@@ -375,24 +383,53 @@ const styles = StyleSheet.create({
   activeTitle: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#10b981',
     marginBottom: 16,
   },
   activeText: {
-    color: '#a3a3a3',
+    color: '#6ee7b7',
     fontSize: 16,
     marginBottom: 8,
   },
   activeButton: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#10b981',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 4,
     marginTop: 24,
   },
   activeButtonText: {
-    color: '#000000',
+    color: '#040807',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  supportContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#0a1412',
+    borderWidth: 1,
+    borderColor: '#132c25',
+    borderRadius: 6,
+    padding: 12,
+    marginVertical: 12,
+  },
+  supportLabel: {
+    color: '#6ee7b7',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  supportBtn: {
+    backgroundColor: '#11231f',
+    borderWidth: 1,
+    borderColor: '#1d3d36',
+    borderRadius: 4,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+  },
+  supportValue: {
+    color: '#10b981',
+    fontSize: 14,
     fontWeight: 'bold',
   },
   logoutButton: {

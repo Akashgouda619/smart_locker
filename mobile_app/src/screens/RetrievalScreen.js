@@ -110,7 +110,7 @@ export default function RetrievalScreen({ route, navigation }) {
   if (!booking) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#ffffff" />
+        <ActivityIndicator size="large" color="#10b981" />
       </View>
     );
   }
@@ -155,7 +155,7 @@ export default function RetrievalScreen({ route, navigation }) {
                 disabled={loading}
               >
                 {loading ? (
-                  <ActivityIndicator color="#000000" />
+                  <ActivityIndicator color="#040807" />
                 ) : (
                   <Text style={styles.confirmButtonText}>Verify & Unlock Locker</Text>
                 )}
@@ -181,7 +181,7 @@ export default function RetrievalScreen({ route, navigation }) {
                 disabled={closing}
               >
                 {closing ? (
-                  <ActivityIndicator color="#000000" />
+                  <ActivityIndicator color="#040807" />
                 ) : (
                   <Text style={styles.confirmButtonText}>CLOSE LOCKER</Text>
                 )}
@@ -197,7 +197,7 @@ export default function RetrievalScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#040807',
   },
   scrollContainer: {
     flexGrow: 1,
@@ -206,37 +206,37 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#040807',
     justifyContent: 'center',
     alignItems: 'center',
   },
   card: {
-    backgroundColor: '#0c0c0e',
+    backgroundColor: '#0a1412',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#ffffff',
+    borderColor: '#132c25',
     padding: 24,
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#10b981',
     marginBottom: 16,
     textAlign: 'center',
   },
   label: {
-    color: '#a3a3a3',
+    color: '#6ee7b7',
     fontSize: 16,
     marginBottom: 6,
     textAlign: 'center',
   },
   divider: {
     height: 1,
-    backgroundColor: '#262626',
+    backgroundColor: '#132c25',
     marginVertical: 16,
   },
   instruction: {
-    color: '#a3a3a3',
+    color: '#e6f4f1',
     fontSize: 14,
     textAlign: 'center',
     lineHeight: 20,
@@ -246,21 +246,23 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   fieldLabel: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#ffffff',
-    color: '#000000',
+    backgroundColor: '#11231f',
+    color: '#e6f4f1',
+    borderWidth: 1,
+    borderColor: '#1d3d36',
     height: 48,
     borderRadius: 4,
     paddingHorizontal: 16,
     fontSize: 16,
   },
   confirmButton: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#10b981',
     height: 48,
     borderRadius: 4,
     justifyContent: 'center',
@@ -268,7 +270,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
   },
   confirmButtonText: {
-    color: '#000000',
+    color: '#040807',
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -276,26 +278,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   successText: {
-    color: '#22c55e',
+    color: '#10b981',
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 8,
   },
   doorUnlockTitle: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 22,
     fontWeight: 'bold',
     marginBottom: 16,
   },
   instructionText: {
-    color: '#a3a3a3',
+    color: '#6ee7b7',
     fontSize: 14,
     textAlign: 'center',
     lineHeight: 20,
     marginBottom: 16,
   },
   instructionTextBold: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 14,
     fontWeight: 'bold',
     textAlign: 'center',

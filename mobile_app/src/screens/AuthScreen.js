@@ -202,7 +202,7 @@ export default function AuthScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: '#040807',
   },
   scrollContainer: {
     flexGrow: 1,
@@ -210,10 +210,10 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   card: {
-    backgroundColor: '#0c0c0e',
+    backgroundColor: '#0a1412',
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#ffffff',
+    borderColor: '#132c25',
     padding: 24,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -224,13 +224,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#10b981',
     textAlign: 'center',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 14,
-    color: '#a3a3a3',
+    color: '#6ee7b7',
     textAlign: 'center',
     marginBottom: 24,
   },
@@ -248,21 +248,23 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   label: {
-    color: '#ffffff',
+    color: '#e6f4f1',
     fontSize: 14,
     fontWeight: '600',
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#ffffff',
-    color: '#000000',
+    backgroundColor: '#11231f',
+    color: '#e6f4f1',
+    borderWidth: 1,
+    borderColor: '#1d3d36',
     height: 48,
     borderRadius: 4,
     paddingHorizontal: 16,
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#10b981',
     height: 48,
     borderRadius: 4,
     justifyContent: 'center',
@@ -270,7 +272,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   buttonText: {
-    color: '#000000',
+    color: '#040807',
     fontSize: 16,
     fontWeight: 'bold',
   },
@@ -279,7 +281,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   switchText: {
-    color: '#a3a3a3',
+    color: '#14b8a6',
     fontSize: 14,
     textDecorationLine: 'underline',
   },

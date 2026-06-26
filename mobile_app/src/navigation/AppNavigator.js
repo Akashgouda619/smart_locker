@@ -27,8 +27,8 @@ export default function AppNavigator() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000000' }}>
-        <ActivityIndicator size="large" color="#ffffff" />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#040807' }}>
+        <ActivityIndicator size="large" color="#10b981" />
       </View>
     );
   }
@@ -37,15 +37,15 @@ export default function AppNavigator() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerStyle: { backgroundColor: '#0c0c0e', borderBottomWidth: 1, borderBottomColor: '#262626' },
-          headerTintColor: '#ffffff',
+          headerStyle: { backgroundColor: '#0a1412', borderBottomWidth: 1, borderBottomColor: '#132c25' },
+          headerTintColor: '#10b981',
           headerTitleStyle: { fontWeight: 'bold' },
-          cardStyle: { backgroundColor: '#000000' }
+          cardStyle: { backgroundColor: '#040807' }
         }}
       >
         {user ? (
           <>
-            <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Smart Rental Locker' }} />
+            <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Smart Locker' }} />
             <Stack.Screen name="Payment" component={PaymentScreen} options={{ title: 'Confirm Payment' }} />
             <Stack.Screen name="Timer" component={TimerScreen} options={{ title: 'Locker Session' }} />
             <Stack.Screen name="Retrieval" component={RetrievalScreen} options={{ title: 'Retrieve Belongings' }} />
