@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { onAuthStateChanged } from 'firebase/auth';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { auth } from '../services/firebaseConfig';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AuthScreen from '../screens/AuthScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -18,8 +19,24 @@ export default function AppNavigator() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (usr) => {
-      setUser(usr);
+    const unsubscribe = onAuthStateChanged(auth, async (usr) => {
+      if (usr) {
+        try {
+          const token = await AsyncStorage.getItem('jwt_token');
+          if (token) {
+            setUser(usr);
+          } else {
+            console.log("Firebase user found but JWT token missing. Signing out of Firebase...");
+            await signOut(auth);
+            setUser(null);
+          }
+        } catch (e) {
+          console.error("Error retrieving JWT token:", e);
+          setUser(null);
+        }
+      } else {
+        setUser(null);
+      }
       setLoading(false);
     });
     return unsubscribe;
