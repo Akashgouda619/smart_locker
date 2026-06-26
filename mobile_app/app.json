@@ -26,6 +26,12 @@
         "projectId": "a9543088-b625-4c09-91c0-0ab7c6179a13"
       }
     },
-    "owner": "akashgouda"
+    "owner": "akashgouda",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a9543088-b625-4c09-91c0-0ab7c6179a13"
+    }
   }
 }
