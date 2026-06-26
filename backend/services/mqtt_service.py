@@ -30,7 +30,7 @@ def init_mqtt():
         
         # Configure connections
         # By default, connects to local Mosquitto broker running on localhost
-        broker_ip = "broker.hivemq.com"
+        broker_ip = "broker.emqx.io"
         broker_port = 1883
         
         client.on_connect = on_connect

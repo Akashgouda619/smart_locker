@@ -23,7 +23,7 @@ const char* WIFI_PASSWORD = "12345678";
 const char* SERVER_URL    = "https://smart-locker-stm1.onrender.com";
 
 // ─── MQTT Broker ─────────────────────────────────────────────
-const char* MQTT_SERVER   = "broker.hivemq.com"; // Public cloud MQTT broker
+const char* MQTT_SERVER   = "broker.emqx.io"; // Public cloud MQTT broker
 const int MQTT_PORT       = 1883;
 
 // ─── Locker Identity ─────────────────────────────────────────
