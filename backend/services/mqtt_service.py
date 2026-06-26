@@ -43,10 +43,10 @@ def init_mqtt():
     except Exception as e:
         print(f">>> Failed to initialize Paho MQTT client: {e}")
 
+import paho.mqtt.publish as publish
+
 def publish_command(locker_id, command_name, extra_payload=None):
     """Publishes a control JSON command to a locker topic (smartlocker_67da4/lockers/{locker_id}/commands)"""
-    global client, connected
-    
     topic = f"smartlocker_67da4/lockers/{locker_id}/commands"
     payload = {
         "command": command_name,
@@ -57,14 +57,18 @@ def publish_command(locker_id, command_name, extra_payload=None):
         
     json_str = json.dumps(payload)
     
-    if client is None or not connected:
-        print(f"[MQTT Mock Publish] Broker offline. Topic: {topic} | Payload: {json_str}")
-        return False
-        
     try:
-        client.publish(topic, json_str, qos=1)
+        # Use single-shot publishing to guarantee delivery in multi-process/WSGI environments
+        publish.single(
+            topic,
+            payload=json_str,
+            hostname="broker.emqx.io",
+            port=1883,
+            qos=1
+        )
         print(f"[MQTT Publish] Topic: {topic} | Payload: {json_str}")
         return True
     except Exception as e:
         print(f"[MQTT Publish Error] Failed to publish message to topic {topic}: {e}")
         return False
+
