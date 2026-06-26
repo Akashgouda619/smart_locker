@@ -1,0 +1,25 @@
+# Databases
+*.db
+backend/locker.db
+locker.db
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Sensitive Credentials
+backend/config/firebase-key.json
+
+# Mobile App
+mobile_app/node_modules/
+mobile_app/.expo/
+mobile_app/web-build/
+mobile_app/dist/
+
+# IDE / System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
