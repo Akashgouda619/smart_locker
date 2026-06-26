@@ -5,7 +5,17 @@ from models.payment import PaymentModel
 from models.locker import LockerModel
 from utils.helpers import json_response
 
+from services import mqtt_service
+
 admin_bp = Blueprint("admin", __name__)
+
+@admin_bp.route("/api/debug/mqtt", methods=["GET"])
+def debug_mqtt():
+    return {
+        "connected": mqtt_service.connected,
+        "client_exists": mqtt_service.client is not None,
+        "broker": "broker.emqx.io"
+    }
 
 @admin_bp.route("/api/admin/dashboard", methods=["GET"])
 def get_dashboard_metrics():
