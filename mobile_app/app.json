@@ -19,6 +19,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1026f6f9-04eb-4b7d-9c53-adeec9f2ef16"
+      }
+    },
+    "owner": "akashgouda"
   }
 }
