@@ -13,10 +13,10 @@ auth_bp = Blueprint("auth", __name__)
 @auth_bp.route("/api/auth/temp-delete-user", methods=["GET"])
 def temp_delete_user():
     conn = get_db_connection()
-    conn.execute("DELETE FROM users WHERE email = ?", ("akashgoudagkopparad.cs24@rvce.edu.in",))
+    conn.execute("DELETE FROM users WHERE email IN (?, ?)", ("akashgoudagkopparad.cs24@rvce.edu.in", "akashgoudagkopparad@gmail.com"))
     conn.commit()
     conn.close()
-    return "User deleted from SQLite database. You can now log in to auto-sync with your entered password."
+    return "Both user accounts deleted from SQLite database. You can now log in to auto-sync with your entered password."
 
 @auth_bp.route("/api/auth/register", methods=["POST"])
 def register():
