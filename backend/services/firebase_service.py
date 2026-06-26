@@ -25,13 +25,28 @@ def init_firebase():
             firebase_admin.initialize_app(cred)
             db = firestore.client()
             initialized = True
-            print(">>> Firebase Admin successfully initialized.")
+            print(">>> Firebase Admin successfully initialized from file.")
         except Exception as e:
-            print(f">>> Failed to initialize Firebase Admin SDK: {e}")
-    else:
-        print(f">>> Firebase Admin key NOT found at: {key_path}")
+            print(f">>> Failed to initialize Firebase Admin SDK from file: {e}")
+            
+    if not initialized:
+        firebase_config_env = os.environ.get("FIREBASE_CONFIG_JSON")
+        if firebase_config_env:
+            try:
+                import json
+                cred_dict = json.loads(firebase_config_env)
+                cred = credentials.Certificate(cred_dict)
+                firebase_admin.initialize_app(cred)
+                db = firestore.client()
+                initialized = True
+                print(">>> Firebase Admin successfully initialized from environment variable.")
+            except Exception as e:
+                print(f">>> Failed to initialize Firebase Admin SDK from env var: {e}")
+                
+    if not initialized:
+        print(f">>> Firebase Admin key NOT found in config folder or environment variables.")
         print(">>> Firestore real-time sync is currently in MOCK MODE.")
-        print(">>> To enable, download a Service Account Key JSON from Firebase Console and save it as backend/config/firebase-key.json")
+        print(">>> To enable, download a Service Account Key JSON from Firebase Console and save it as backend/config/firebase-key.json or set FIREBASE_CONFIG_JSON environment variable.")
 
 def sync_locker_status(locker_id, status):
     """Pushes locker status changes (available / occupied / reserved) to Firestore."""
