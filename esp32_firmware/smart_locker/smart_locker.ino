@@ -153,7 +153,8 @@ void loop() {
 void reconnectMQTT() {
   while (!mqttClient.connected()) {
     Serial.print("Attempting MQTT connection...");
-    String clientId = "ESP32Locker-" + String(LOCKER_ID);
+    // Generate a unique client ID using a random suffix to prevent broker collisions
+    String clientId = "ESP32Locker-" + String(LOCKER_ID) + "-" + String(random(10000, 99999));
     
     if (mqttClient.connect(clientId.c_str())) {
       Serial.println("Connected to MQTT Broker!");
