@@ -92,10 +92,15 @@ def cancel_booking():
 
     booking = BookingModel.get_by_id(booking_id)
     if not booking:
+        # Ghost booking check: if the server database was reset but Firestore has a ghost booking, delete it to let the app recover
+        try:
+            from services.firebase_service import delete_booking_sync
+            delete_booking_sync(booking_id)
+        except Exception as e:
+            print(f"Failed to delete ghost booking from Firestore: {e}")
         return json_response(
-            success=False,
-            message="Booking not found",
-            status_code=404
+            success=True,
+            message="Ghost booking cleared successfully"
         )
 
     if booking["user_id"] != g.current_user["id"]:

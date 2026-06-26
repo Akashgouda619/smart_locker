@@ -1270,4 +1270,11 @@ def web_admin_reset_locker(locker_id):
     # Also ensure the locker is marked available in SQLite and Firestore
     LockerModel.update_status(locker_id, "available")
     
+    # UNCONDITIONAL MQTT RESET (handles cases where the local database was wiped/reset but hardware needs a clear)
+    try:
+        from services.mqtt_service import publish_command
+        publish_command(locker_id, "reset", {"state": "available"})
+    except Exception as e:
+        print(f"Failed to send unconditional MQTT reset: {e}")
+    
     return jsonify({"success": True})
